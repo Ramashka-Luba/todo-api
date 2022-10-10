@@ -1,5 +1,6 @@
 import s from './RegistrationPage.module.css';
 import { useState } from 'react';
+import axios from 'axios';
 
 const RegistrationPage = () => {
 
@@ -8,7 +9,7 @@ const RegistrationPage = () => {
         username: "",
         email: "",
         password: "",
-        isMan: "true",
+        isMan: true,
         age: 0
     })
 
@@ -16,7 +17,8 @@ const RegistrationPage = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         setData(data)
-        console.log(data);
+        // console.log(data);
+        heandlePost();
 
 
         setData({//для того чтоб импут очищался 
@@ -27,7 +29,18 @@ const RegistrationPage = () => {
             isMan: "true",
             age: 0
         });
-    }
+    };
+
+    const heandlePost = async() => {
+        // console.log("-----heandlePost-------");
+        console.log(data);
+        try {
+            const res = await axios.post ("https://first-node-js-app-r.herokuapp.com/api/users/register", data );
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
 
 
@@ -79,7 +92,7 @@ const RegistrationPage = () => {
                         <label className={s.label} htmlFor="gender">Gender<span>*</span></label>
                         <div className={s.select}>
                             <select 
-                                onChange={(e) => setData({...data, isMan : e.target.value})}
+                                onChange={(e) => setData({...data, isMan : !data.isMan})}
                                 value={data.isMan} 
                                 name="gender">
                                     <option value="true">Male</option>
@@ -91,7 +104,7 @@ const RegistrationPage = () => {
                     <div className={s.wrapInput}>
                         <label className={s.label} htmlFor="age">Age<span>*</span></label>
                         <input 
-                            onChange={(e) => setData({...data, age : e.target.value})}
+                            onChange={(e) => setData({...data, age : Number(e.target.value)})}
                             value={data.age} 
                             type='number'
                             className={s.input}  />
