@@ -11,7 +11,7 @@ const RegistrationPage = () => {
         password: "",
         isMan: true,
         age: 0
-    })
+    });
 
 
     const handleSubmit = (e) => {
@@ -46,8 +46,8 @@ const RegistrationPage = () => {
 
     return (
         <div className={s.RegistrationPage}>
-            <div className={s.innerRegistration}>
-                <h2 className={s.titleRegistration}>Registration</h2>
+            <div className={s.inner}>
+                <h2 className={s.title}>Registration</h2>
 
                 <form onSubmit={(e) => handleSubmit(e)} 
                         className={s.wrapForm}>

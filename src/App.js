@@ -1,6 +1,7 @@
 import s from './App.module.css';
-import MainPage from './components/mainPage/MainPage';
-import Registration from './components/registrationPage/RegistrationPage';
+import LoginPage from './components/page/loginPage/LoginPage';
+import MainPage from './components/page/mainPage/MainPage.jsx';
+import Registration from './components/page/registrationPage/RegistrationPage';
 
 
 const App = () => {
@@ -8,7 +9,8 @@ const App = () => {
 return (
     <>
         {/* <MainPage/> */}
-        <Registration/>
+        {/* <Registration/> */}
+        <LoginPage/>
     </>
 );
 }

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import s from './MainPage.module.css';
-import Form from './../../components/form/Form.jsx'
-import ToDo from './../../components/toDo/ToDo.jsx'
+import Form from '../../form/Form.jsx'
+import ToDo from '../../toDo/ToDo.jsx'
 
 
 const MainPage = () => {
 
 const [tasks, setTasks] = useState([
-    { id: 1, title: "Buy Orange", date:'2000-20-20', count: 20, completed: false },
+    { id: 1, title: "Buy Orange", isCompleted: false },
 ]);
 
 
@@ -27,7 +27,7 @@ const handleComplete = (id) => {    // заваршина таска или не
     setTasks(tasks.map(item => {
         if (item.id === id) {
             return {
-                ...item, completed: !item.completed
+                ...item, isCompleted: !item.isCompleted
             };
         }
         return item;
@@ -37,8 +37,8 @@ const handleComplete = (id) => {    // заваршина таска или не
 
 return (
     <div className={s.MainPage}>
-        <div className={s.innerMain}>
-            <h2 className={s.titleMain}>What's the Plan for Today?</h2>
+        <div className={s.inner}>
+            <h2 className={s.title}>What's the Plan for Today?</h2>
             <Form
                 setTasks={setTasks}
                 tasks={tasks} />

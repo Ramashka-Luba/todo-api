@@ -44,7 +44,7 @@ const ToDo = ({ task, handleDelete, handleEdit, handleComplete}) => {
                             onKeyDown={onKeyDown}
 
                         />
-                        : <div  className={task.completed ? s.completed : ""}>{task.title} / {task.count} / {task.date}</div>}
+                        : <div  className={task.isCompleted ? s.completed : ""}>{task.title}</div>}
                 </div>
                 <div className={s.wrapRight}>
                     <button className={s.btnDelete} onClick={() => handleDelete(task.id)}> 

@@ -8,7 +8,7 @@
     background: #EBEDFA;
 }
 
-.innerRegistration {
+.inner {
     /* height: 90vh; */
     width: 40%;
     min-width: 360px;
@@ -30,7 +30,7 @@
     }
 }
 
-.titleRegistration {
+.title {
     font-size: 25px;
     margin-bottom: 30px;
     font-weight: 600;
