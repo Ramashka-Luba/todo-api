@@ -27,7 +27,10 @@ const LoginPage = () => {
         // console.log(dataLog);
         try {
             const res = await axios.post ("https://first-node-js-app-r.herokuapp.com/api/auth/login", dataLog );
-            console.log(res);
+            // console.log(res.data.token);
+
+            localStorage.setItem ("token", res.data.token)
+
         } catch (error) {
             console.log(error);
         }
@@ -36,7 +39,7 @@ const LoginPage = () => {
 return (
     <div className={s.LoginPage}>
     <div className={s.inner}>
-        <h2 className={s.title}>Sing In</h2>
+        <h2 className={s.title}>Sign In</h2>
 
         <form  onSubmit={(e) => handleSubmitLog(e)} 
                 className={s.wrapForm}>
@@ -60,7 +63,7 @@ return (
             </div>
 
             <div className={s.wrapBtn}>
-                <button className={s.btn} type="submit">Sing In</button>
+                <button className={s.btn} type="submit">Sign In</button>
             </div>
 
         </form>
