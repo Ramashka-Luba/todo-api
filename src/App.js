@@ -1,8 +1,8 @@
 import s from './App.module.css';
-import {Route, Navigate, Router, Routes}  from "react-router-dom"
+import {Route, Navigate, Routes}  from "react-router-dom"
 import LoginPage from './components/page/loginPage/LoginPage';
 import MainPage from './components/page/mainPage/MainPage.jsx';
-import Registration from './components/page/registrationPage/RegistrationPage';
+import RegistrationPage from './components/page/registrationPage/RegistrationPage';
 
 
 
@@ -28,24 +28,25 @@ const App = () => {
 return (
     <>
 
-        <Routes>
+        {/* <Routes>
             <Route path="/" element={
                 <RequireAuth redirectTo="/login"> {/*redirectTo="/login" - если ты не зологинин перекигь на стр. логинизации */}
-                    <MainPage /> {/*children - если ты зологинин перекигь на нужную страницу */}
-                </RequireAuth>
+                    {/* <MainPage /> {/*children - если ты зологинин перекигь на нужную страницу */}
+                {/* </RequireAuth>
             }/>
             <Route path="/login" element={<LoginPage />}/> 
+        </Routes> */} 
 
-
-            
-            {/* <Route path="/dese" element={
-                <PrivateRoute component={() => (<MainPage />)} />}
-            /> */}
-
-        </Routes>
         {/* <MainPage/> */}
         {/* <Registration/>
         {/* <LoginPage/> */}
+
+
+        <Routes>
+            <Route path="/" element={<RegistrationPage/>}/>
+            <Route path="/loginPage" element={<LoginPage/>}/>
+            <Route path="/mainPage" element={<MainPage/>}/>
+        </Routes>
 
 
 

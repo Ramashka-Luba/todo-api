@@ -10,23 +10,33 @@ const Form = ({tasks, setTasks}) => {
 
     const handleClick = (e) => { //добавить новую таску
         e.preventDefault() // не перезагружает форму после Enter
+        // const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
         if(text) { // условие чтоб не добовляла пустую строку
             setTasks([...tasks, {id: tasks.length+1, title: text, isCompleted: false}]);
-        }   
+        }  
+        console.log("-------tasks-------");
+        console.log(tasks);
         handleTasksPost();
         setText(''); //для того чтоб импут очищался 
     };
 
     const handleTasksPost = async () => {
-        console.log(tasks);
-        // try {
-        //     const res = await axios.post ("https://first-node-js-app-r.herokuapp.com/api/todos", {
-        //         title: '',
-        //     } );
-        //     console.log(res);
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
+        try {
+            const res = await axios.post("https://first-node-js-app-r.herokuapp.com/api/todos",
+                { title: text },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
+                    },
+                },
+            );
+            console.log("-----res-------");
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -47,7 +57,7 @@ export default Form;
 
 
 
-
+// {headers: {Authorization: `Bearer ${token}`},}
 
 
 

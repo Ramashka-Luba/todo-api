@@ -1,6 +1,7 @@
 import s from './LoginPage.module.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
 
@@ -8,6 +9,8 @@ const LoginPage = () => {
         email: "",
         password: ""
     });
+
+    const navigate = useNavigate(); //сосдаем экземпляр хука
 
     const handleSubmitLog = (e) => {
         e.preventDefault();
@@ -29,10 +32,20 @@ const LoginPage = () => {
             const res = await axios.post ("https://first-node-js-app-r.herokuapp.com/api/auth/login", dataLog );
             // console.log(res.data.token);
 
+
+            if (!res.data.token) { //несли нет token, то сгинерируй ошибку
+                throw new Error (res.data.message) // и опракинь сюда res.data.message
+            }  else { // иначе запиши token и перекинь на todo
+                localStorage.setItem ("token", res.data.token)
+                navigate('/mainPage'); //вызываем navigate и передаем url, куда хотим чтоб нас перекинуло
+            }
+
             localStorage.setItem ("token", res.data.token)
+            navigate('/mainPage'); //вызываем navigate и передаем url, куда хотим чтоб нас перекинуло
 
         } catch (error) {
             console.log(error);
+            alert(error.response.data.message)
         }
     };
 
@@ -74,3 +87,9 @@ return (
 }
 
 export default LoginPage;
+
+// pena-1@yandex.ru
+// Asdfghjk123+
+
+// asd@gmail.com
+// Asdfg123+

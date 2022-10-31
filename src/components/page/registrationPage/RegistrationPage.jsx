@@ -1,6 +1,7 @@
 import s from './RegistrationPage.module.css';
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const RegistrationPage = () => {
 
@@ -12,6 +13,8 @@ const RegistrationPage = () => {
         isMan: true,
         age: 0
     });
+
+    const navigate = useNavigate(); //сосдаем экземпляр хука
 
 
     const handleSubmit = (e) => {
@@ -32,11 +35,14 @@ const RegistrationPage = () => {
     };
 
     const heandlePost = async() => {
-        // console.log("-----heandlePost-------");
+        console.log("-----heandlePost-------");
         console.log(data);
         try {
             const res = await axios.post ("https://first-node-js-app-r.herokuapp.com/api/users/register", data );
             console.log(res);
+
+            navigate('/loginPage'); //вызываем navigate и передаем url, куда хотим чтоб нас перекинуло
+
         } catch (error) {
             console.log(error);
         }

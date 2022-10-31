@@ -8,7 +8,7 @@ import ToDo from '../../toDo/ToDo.jsx'
 const MainPage = () => {
 
 const [tasks, setTasks] = useState([
-    { id: 1, title: "Buy Orange", isCompleted: false },
+    // { id: 1, title: "Buy Orange", isCompleted: false },
 ]);
 
 
