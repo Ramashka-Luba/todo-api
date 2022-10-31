@@ -36,7 +36,8 @@ const ToDo = ({ index, task, handleDelete, handleEdit, handleComplete}) => {
                     <div className={s.checkbox}>
                         <input className={s.checkboxInput} 
                         type='checkbox' id={task.ID} 
-                        onChange={() => handleComplete(task.ID)} />
+                        onChange={() => handleComplete(task.ID)} 
+                        checked={task.isCompleted ? "checked" : ""}/>
                         <label className={s.checkboxLabel} htmlFor={task.ID}></label>
                     </div>
 
@@ -47,7 +48,7 @@ const ToDo = ({ index, task, handleDelete, handleEdit, handleComplete}) => {
                             onKeyDown={onKeyDown}
 
                         />
-                        : <div  className={task.isCompleted ? s.completed : ""}>{task.title}</div>}
+                        : <div  className={task.isCompleted ? s.completed : "" }>{text}</div>}
                 </div>
                 <div className={s.wrapRight}>
                     <button className={s.btnDelete} onClick={() => handleDelete(task.ID)}> 

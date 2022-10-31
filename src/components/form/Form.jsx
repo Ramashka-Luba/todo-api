@@ -11,10 +11,13 @@ const Form = ({tasks, setTasks}) => {
     const handleClick = (e) => { //добавить новую таску
         e.preventDefault() // не перезагружает форму после Enter
 
-        handleTasksPost();
+
+        if(text) { // условие чтоб не отправлять запрос если пустая строка
+            handleTasksPost();
+        } 
 
         setText(''); //для того чтоб импут очищался 
-    };
+    }
 
     const handleTasksPost = async () => {
         const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
@@ -31,10 +34,8 @@ const Form = ({tasks, setTasks}) => {
             console.log("-----res-------");
             console.log(res);
 
-            if(text) { // условие чтоб не добовляла пустую строку
-                setTasks([...tasks, {ID: res.data.ID, title: text, isCompleted: false}]);
-            } 
- 
+            setTasks([...tasks, {ID: res.data.ID, title: text, isCompleted: false}]);
+
         } catch (error) {
             console.log(error);
         }

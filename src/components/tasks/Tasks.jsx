@@ -1,15 +1,13 @@
 import s from './Tasks.module.css';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 import ToDo from '../toDo/ToDo';
 
 
-const Tasks = ({tasks, setTasks}) => {
+const Tasks = ({ tasks, setTasks }) => {
 
-
-    // const [tasks, setTasks] = useState(null);
-
-    useEffect(() => {   
+    ////////////// Запрос с сервера всех задач //////////////
+    useEffect(() => {
         async function fetchData() {
             const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
 
@@ -26,15 +24,13 @@ const Tasks = ({tasks, setTasks}) => {
             setTasks(result.data);
         }
         fetchData();
-    },[]);
+    }, []);
 
+    ////////////// Удаление //////////////
+    const handleDelete = (id) => {
 
-    const handleDelete = (id) => {  //удаляем
-
-
-
-        const requestDelete = async() => {
-            const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
+        const requestDelete = async () => {
+            const token = localStorage.getItem("token");  
             // console.log(id);
             const result = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
                 {
@@ -49,37 +45,71 @@ const Tasks = ({tasks, setTasks}) => {
         const filtredArr = tasks.filter((item) => item.ID !== id);
         setTasks([...filtredArr]);
     };
-    
-    const handleEdit = (id, text ) => { // изменяем
+
+
+    ////////////// Редактирование //////////////    
+    const handleEdit = (id, text) => {
         const arr = tasks.map(item => item.id === id ? { ...item, title: text } : item);
-    
+
         setTasks([...arr]);
+
+        const requestEdit = async () => {
+            const token = localStorage.getItem("token");  
+            const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+                { title: text },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                },
+            );
+            console.log(result);
+        }
+        requestEdit()
     };
-    
-    const handleComplete = (id) => { // заваршина таска или нет 
+
+
+    ////////////// Заваршина таска или нет  //////////////    
+    const handleComplete = (id) => {
         setTasks(tasks.map(item => {
-            if (item.id === id) {
+            if (item.ID === id) {
                 return {
                     ...item, isCompleted: !item.isCompleted
                 };
             }
             return item;
         }))
+
+        const requestComplete = async () => {
+            const token = localStorage.getItem("token");  
+            // console.log(token);
+            const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}/isCompleted`,
+                { },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                },
+            );
+        }
+        requestComplete()
     };
-    
+
+
+
+
 
     return (
         <>
-
             <ul className={s.list}>
 
-                {tasks ?  tasks.map((task, index) => (
+                {tasks ? tasks.map((task, index) => (
                     <ToDo key={task.ID}  //чтобы пофиксить ошибку с "key" - корневому элементу добавляем key и присваиваем наш id
                         task={task}
                         handleDelete={handleDelete}
                         handleEdit={handleEdit}
                         handleComplete={handleComplete}
-                        index ={index}
+                        index={index}
                     />
                 )) : <p>...in prpgress</p>
                 }
