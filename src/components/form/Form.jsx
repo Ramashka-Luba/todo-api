@@ -10,13 +10,9 @@ const Form = ({tasks, setTasks}) => {
 
     const handleClick = (e) => { //добавить новую таску
         e.preventDefault() // не перезагружает форму после Enter
-        // const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
-        if(text) { // условие чтоб не добовляла пустую строку
-            setTasks([...tasks, {id: tasks.length+1, title: text, isCompleted: false}]);
-        }  
-        console.log("-------tasks-------");
-        console.log(tasks);
+
         handleTasksPost();
+
         setText(''); //для того чтоб импут очищался 
     };
 
@@ -34,10 +30,16 @@ const Form = ({tasks, setTasks}) => {
             );
             console.log("-----res-------");
             console.log(res);
+
+            if(text) { // условие чтоб не добовляла пустую строку
+                setTasks([...tasks, {ID: res.data.ID, title: text, isCompleted: false}]);
+            } 
+ 
         } catch (error) {
             console.log(error);
         }
     }
+
 
     return (
         <form onSubmit={(e) => handleClick(e)} className={s.form}> {/* e - для preventDefault*/}
@@ -45,7 +47,7 @@ const Form = ({tasks, setTasks}) => {
                 value = {text} 
                 className={s.input} 
                 placeholder="Lead the task"/>
-            <button onClick = {(e) => handleClick(e)} className={s.add}>Add Todo</button>
+            <button type="submit" className={s.add}>Add Todo</button>
         </form>
     );
 }

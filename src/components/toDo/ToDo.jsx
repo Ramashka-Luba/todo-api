@@ -1,19 +1,21 @@
 import s from './ToDo.module.css';
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import axios from 'axios';
+
 import Edit from "./../../assets/edit.png";
 import Delete from "./../../assets/delete.png";
 import Save from "./../../assets/save.png";
 import InputEdit from '../inputEdit/InputEdit';
 
 
-const ToDo = ({ task, handleDelete, handleEdit, handleComplete}) => {
+const ToDo = ({ index, task, handleDelete, handleEdit, handleComplete}) => {
 
     const [isEdit, setIsEdit] = useState(false);
     const [text, setText] = useState(task.title);
 
     const toggle = () => {  //вызвать изменения
         if (isEdit) {
-            handleEdit(task.id, text);
+            handleEdit(task.ID, text);
         }
         setIsEdit(!isEdit);
     };
@@ -25,16 +27,17 @@ const ToDo = ({ task, handleDelete, handleEdit, handleComplete}) => {
             
         }
 
+        
     return (
         <>
-            <div className={task.id % 2 === 0 ? s.innerItem : s.innerItemBg}>
+            <div className={index % 2 === 0 ? s.innerItem : s.innerItemBg}>
                 <div onClick={() => toggle()} className={s.wrapLeft}>
 
                     <div className={s.checkbox}>
                         <input className={s.checkboxInput} 
-                        type='checkbox' id={task.id} 
-                        onChange={() => handleComplete(task.id)} />
-                        <label className={s.checkboxLabel} htmlFor={task.id}></label>
+                        type='checkbox' id={task.ID} 
+                        onChange={() => handleComplete(task.ID)} />
+                        <label className={s.checkboxLabel} htmlFor={task.ID}></label>
                     </div>
 
                     {isEdit
@@ -47,7 +50,7 @@ const ToDo = ({ task, handleDelete, handleEdit, handleComplete}) => {
                         : <div  className={task.isCompleted ? s.completed : ""}>{task.title}</div>}
                 </div>
                 <div className={s.wrapRight}>
-                    <button className={s.btnDelete} onClick={() => handleDelete(task.id)}> 
+                    <button className={s.btnDelete} onClick={() => handleDelete(task.ID)}> 
                         <img src={Delete} alt="delete" />
                     </button>
                     <button className={s.btnEdit} onClick={() => toggle()}>
