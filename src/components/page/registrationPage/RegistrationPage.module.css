@@ -128,3 +128,22 @@ select:focus {
     box-shadow: 0 0 0 0.2rem rgba(247, 146, 162, 0.25);
     outline: 0;
 }
+
+.linkWrap {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.link {
+    color: #0000ff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 17px; 
+}
+
+.link:hover {
+    color: #FD5F78;
+}
+
+
+

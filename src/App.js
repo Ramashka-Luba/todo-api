@@ -3,6 +3,7 @@ import {Route, Navigate, Routes}  from "react-router-dom"
 import LoginPage from './components/page/loginPage/LoginPage';
 import MainPage from './components/page/mainPage/MainPage.jsx';
 import RegistrationPage from './components/page/registrationPage/RegistrationPage';
+import PrivateRoute from './components/hoc/PrivateRoute';
 
 
 
@@ -43,9 +44,11 @@ return (
 
 
         <Routes>
-            <Route path="/" element={<RegistrationPage/>}/>
-            <Route path="/loginPage" element={<LoginPage/>}/>
-            <Route path="/mainPage" element={<MainPage/>}/>
+            <Route path="/" element={<RegistrationPage />} />
+            <Route path="/loginPage" element={<LoginPage />} />
+            <Route path="/mainPage" element={<PrivateRoute>
+                                                <MainPage />
+                                            </PrivateRoute>} />
         </Routes>
 
 

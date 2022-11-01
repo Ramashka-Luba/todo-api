@@ -2,6 +2,7 @@ import s from './RegistrationPage.module.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import Arrow from "./../../../assets/arrow-right.png"
 
 const RegistrationPage = () => {
 
@@ -118,6 +119,10 @@ const RegistrationPage = () => {
 
                     <div className={s.wrapBtn}>
                         <button className={s.btn} type="submit">Registration</button>
+                    </div>
+
+                    <div className={s.linkWrap}>
+                        <a href="/loginPage" className={s.link}>Sign In &#8594;</a>
                     </div>
 
                 </form>

@@ -96,13 +96,9 @@ const Tasks = ({ tasks, setTasks }) => {
     };
 
 
-
-
-
     return (
         <>
             <ul className={s.list}>
-
                 {tasks ? tasks.map((task, index) => (
                     <ToDo key={task.ID}  //чтобы пофиксить ошибку с "key" - корневому элементу добавляем key и присваиваем наш id
                         task={task}
@@ -114,8 +110,6 @@ const Tasks = ({ tasks, setTasks }) => {
                 )) : <p>...in prpgress</p>
                 }
             </ul>
-
-
         </>
     );
 }

@@ -79,6 +79,10 @@ return (
                 <button className={s.btn} type="submit">Sign In</button>
             </div>
 
+            <div className={s.linkWrap}>
+                <a href="/" className={s.link}>Registration &#8594;</a>
+            </div>
+
         </form>
     </div>
 
