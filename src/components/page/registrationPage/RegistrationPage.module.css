@@ -42,9 +42,9 @@
     overflow: auto;
 } */
 
-/* .wrapInput{
-    
-} */
+.wrapInput{
+    margin-bottom: 25px;
+}
 
 
 .label{
@@ -54,8 +54,12 @@
 }
 .error {
     margin-left: 10px;
-    font-size: 12px;
+    font-size: 10px;
     color: red;
+}
+.password {
+    font-size: 10px;
+    color: #6e7285;
 }
 
 .label span{
@@ -70,7 +74,7 @@
     box-sizing: border-box;
     font-size: 15px;
     font-family: 'Montserrat';
-    margin-bottom: 25px;
+
 }
 
 .input:focus {
@@ -84,7 +88,7 @@
     justify-content: center;
 }
 
-.btn {
+button {
     padding: 10px 20px;
     min-width: 105px;
         
@@ -94,11 +98,32 @@
     font-size: 15px;
     cursor: pointer;
 }
+button:disabled {
+    padding: 10px 20px;
+    min-width: 105px;
+        
+    border-radius: 10px;
+    background-color: rgb(247 146 162 / 25%);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
 
-.btn:hover {
+/* .btnDS {
+    padding: 10px 20px;
+    min-width: 105px;
+        
+    border-radius: 10px;
+    background-color: #888283;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+} */
+
+/* .btn:hover {
     background-color: #FD5F78;
     transition: background-color 0.15s ease-in-out;
-}
+} */
 
 .select {
     position: relative;
@@ -114,8 +139,8 @@
     top: 50%;
     right: 25px;
     z-index: 1;
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     transform: translateY(-50%);
 }
 
