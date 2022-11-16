@@ -6,6 +6,7 @@
     min-height: 100vh;
 
     background: #EBEDFA;
+    padding: 20px;
 }
 
 .inner {
@@ -42,13 +43,19 @@
 } */
 
 /* .wrapInput{
-    margin-bottom: 20px;
+    
 } */
+
 
 .label{
     margin-left: 15px;
     color:#6e7285;
     font-size: 12px;
+}
+.error {
+    margin-left: 10px;
+    font-size: 12px;
+    color: red;
 }
 
 .label span{
@@ -63,7 +70,7 @@
     box-sizing: border-box;
     font-size: 15px;
     font-family: 'Montserrat';
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .input:focus {
@@ -138,7 +145,6 @@ select:focus {
     color: #0000ff;
     text-decoration: none;
     font-weight: 500;
-    font-size: 17px; 
 }
 
 .link:hover {
