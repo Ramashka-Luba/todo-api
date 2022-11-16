@@ -57,10 +57,7 @@
     font-size: 10px;
     color: red;
 }
-.password {
-    font-size: 10px;
-    color: #6e7285;
-}
+
 
 .label span{
     color: red;
@@ -98,32 +95,18 @@ button {
     font-size: 15px;
     cursor: pointer;
 }
-button:disabled {
-    padding: 10px 20px;
-    min-width: 105px;
-        
-    border-radius: 10px;
+.btn:disabled {
     background-color: rgb(247 146 162 / 25%);
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
 }
 
-/* .btnDS {
-    padding: 10px 20px;
-    min-width: 105px;
-        
-    border-radius: 10px;
-    background-color: #888283;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-} */
-
-/* .btn:hover {
+.btn:hover {
     background-color: #FD5F78;
     transition: background-color 0.15s ease-in-out;
-} */
+}
+
+.btn:disabled:hover {
+    background-color: rgb(247 146 162 / 25%);
+}
 
 .select {
     position: relative;
