@@ -31,7 +31,8 @@
 .wrapLeft{
     display: flex;
     width: 100%;
-    align-items: center;
+    align-items: center; 
+    min-width: 150px;
 }
 
 .wrapRight {
@@ -52,9 +53,19 @@ img {
     transition: transform 400ms ease;
 } 
 
+.text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 129px;
+}
 .completed {
     text-decoration: line-through;
     color: #FD5F78;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 129px;
 }
 
 

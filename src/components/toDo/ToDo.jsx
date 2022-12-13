@@ -48,7 +48,7 @@ const ToDo = ({ index, task, handleDelete, handleEdit, handleComplete}) => {
                             onKeyDown={onKeyDown}
 
                         />
-                        : <div  className={task.isCompleted ? s.completed : "" }>{text}</div>}
+                        : <div  className={task.isCompleted ? s.completed : s.text }>{text}</div>}
                 </div>
                 <div className={s.wrapRight}>
                     <button className={s.btnDelete} onClick={() => handleDelete(task.ID)}> 

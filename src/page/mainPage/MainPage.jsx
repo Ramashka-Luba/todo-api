@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import s from './MainPage.module.css';
-import Form from '../../form/Form.jsx'
-import ToDo from '../../toDo/ToDo.jsx'
-import Tasks from '../../tasks/Tasks';
+import Form from '../../components/form/Form.jsx'
+// import ToDo from '../../components/toDo/ToDo'
+import Tasks from '../../components/tasks/Tasks';
 
 
 const MainPage = () => {

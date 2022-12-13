@@ -51,21 +51,35 @@ const Tasks = ({ tasks, setTasks }) => {
     const handleEdit = (id, text) => {
         const arr = tasks.map(item => item.id === id ? { ...item, title: text } : item);
 
-        setTasks([...arr]);
+        // setTasks([...arr]);
 
-        const requestEdit = async () => {
-            const token = localStorage.getItem("token");  
-            const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
-                { title: text },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
+        try {
+            const requestEdit = async () => {
+                const token = localStorage.getItem("token");
+                const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+                    { title: text },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
                     },
-                },
-            );
-            console.log(result);
+                );
+                console.log("-------Edit-------");
+                console.log(result);
+
+                if (result.status == 200) {
+                    setTasks([...arr]);
+                } else {
+                    alert ("Данные не обновились")
+                }
+            }
+            requestEdit()
+
+
+        } catch (error) {
+            console.log(error);
         }
-        requestEdit()
+
     };
 
 
@@ -81,10 +95,10 @@ const Tasks = ({ tasks, setTasks }) => {
         }))
 
         const requestComplete = async () => {
-            const token = localStorage.getItem("token");  
+            const token = localStorage.getItem("token");
             // console.log(token);
             const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}/isCompleted`,
-                { },
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

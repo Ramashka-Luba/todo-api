@@ -119,8 +119,6 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-// pena-1@yandex.ru
-// Asdfghjk123+
+// asd@asd.com
+// Asdfghjk123@
 
-// asd@gmail.com
-// Asdfg123+

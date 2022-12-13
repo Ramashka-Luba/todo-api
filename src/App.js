@@ -1,8 +1,8 @@
 import s from './App.module.css';
 import {Route, Navigate, Routes}  from "react-router-dom"
-import LoginPage from './components/page/loginPage/LoginPage';
-import MainPage from './components/page/mainPage/MainPage.jsx';
-import RegistrationPage from './components/page/registrationPage/RegistrationPage';
+import LoginPage from './page/loginPage/LoginPage';
+import MainPage from './page/mainPage/MainPage.jsx';
+import RegistrationPage from './page/registrationPage/RegistrationPage';
 import PrivateRoute from './components/hoc/PrivateRoute';
 
 
