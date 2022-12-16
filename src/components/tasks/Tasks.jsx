@@ -1,5 +1,5 @@
 import s from './Tasks.module.css';
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from 'axios';
 import ToDo from '../toDo/ToDo';
 
@@ -10,7 +10,6 @@ const Tasks = ({ tasks, setTasks }) => {
     useEffect(() => {
         async function fetchData() {
             const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
-
             const result = await axios.get("https://first-node-js-app-r.herokuapp.com/api/todos",
                 {
                     headers: {
@@ -21,36 +20,46 @@ const Tasks = ({ tasks, setTasks }) => {
             console.log("-----result-------");
             console.log(result.data);
 
-            setTasks(result.data);
+            setTasks(result.data);  
         }
         fetchData();
     }, []);
 
     ////////////// Удаление //////////////
     const handleDelete = (id) => {
-
-        const requestDelete = async () => {
-            const token = localStorage.getItem("token");  
-            // console.log(id);
-            const result = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
+        try {
+            const requestDelete = async () => {
+                const token = localStorage.getItem("token");
+                // console.log(id);
+                const resultDelete = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
                     },
-                },
-            );
+                );
+                console.log("-------Delete-------");
+                console.log(resultDelete);
+                
+                const filtredArr = tasks.filter((item) => item.ID !== id);
+                if (resultDelete.status === 200) {
+                    setTasks([...filtredArr]);
+                } else {
+                    alert ("Данные не обновились")
+                }
+            }
+            requestDelete()
+            // const filtredArr = tasks.filter((item) => item.ID !== id);
+            // setTasks([...filtredArr]);         
+        } catch (error) {
+            console.log(error);
         }
-        requestDelete()
-
-        const filtredArr = tasks.filter((item) => item.ID !== id);
-        setTasks([...filtredArr]);
     };
 
 
     ////////////// Редактирование //////////////    
     const handleEdit = (id, text) => {
         const arr = tasks.map(item => item.id === id ? { ...item, title: text } : item);
-
         // setTasks([...arr]);
 
         try {
@@ -67,7 +76,7 @@ const Tasks = ({ tasks, setTasks }) => {
                 console.log("-------Edit-------");
                 console.log(result);
 
-                if (result.status == 200) {
+                if (result.status === 200) {
                     setTasks([...arr]);
                 } else {
                     alert ("Данные не обновились")
@@ -75,38 +84,56 @@ const Tasks = ({ tasks, setTasks }) => {
             }
             requestEdit()
 
-
         } catch (error) {
             console.log(error);
         }
-
     };
 
 
     ////////////// Заваршина таска или нет  //////////////    
     const handleComplete = (id) => {
-        setTasks(tasks.map(item => {
-            if (item.ID === id) {
-                return {
-                    ...item, isCompleted: !item.isCompleted
-                };
-            }
-            return item;
-        }))
+        // setTasks(tasks.map(item => {
+        //     if (item.ID === id) {
+        //         return {
+        //             ...item, isCompleted: !item.isCompleted
+        //         };
+        //     }
+        //     return item;
+        // }))
 
-        const requestComplete = async () => {
-            const token = localStorage.getItem("token");
-            // console.log(token);
-            const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}/isCompleted`,
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
+        try {
+            const requestComplete = async () => {
+                const token = localStorage.getItem("token");
+                // console.log(token);
+                const resultEnd = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}/isCompleted`,
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
                     },
-                },
-            );
+                );
+                console.log("-------End-------");
+                console.log(resultEnd);
+
+                if (resultEnd.status === 200) {
+                    setTasks(tasks.map(item => {
+                        if (item.ID === id) {
+                            return {
+                                ...item, isCompleted: !item.isCompleted
+                            };
+                        }
+                        return item;
+                    }))
+                } else {
+                    alert("Данные не обновились")
+                }
+            }
+            requestComplete()
+
+        } catch (error) {
+            console.log(error);
         }
-        requestComplete()
     };
 
 
