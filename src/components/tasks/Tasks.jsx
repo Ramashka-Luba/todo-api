@@ -25,38 +25,7 @@ const Tasks = ({ tasks, setTasks }) => {
         fetchData();
     }, []);
 
-    ////////////// Удаление //////////////
-    const handleDelete = (id) => {
-        try {
-            const requestDelete = async () => {
-                const token = localStorage.getItem("token");
-                // console.log(id);
-                const resultDelete = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        },
-                    },
-                );
-                console.log("-------Delete-------");
-                console.log(resultDelete);
-                
-                const filtredArr = tasks.filter((item) => item.ID !== id);
-                if (resultDelete.status === 200) {
-                    setTasks([...filtredArr]);
-                } else {
-                    alert ("Данные не обновились")
-                }
-            }
-            requestDelete()
-            // const filtredArr = tasks.filter((item) => item.ID !== id);
-            // setTasks([...filtredArr]);         
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-
+ 
     ////////////// Редактирование //////////////    
     const handleEdit = (id, text) => {
         const arr = tasks.map(item => item.id === id ? { ...item, title: text } : item);
@@ -84,6 +53,38 @@ const Tasks = ({ tasks, setTasks }) => {
             }
             requestEdit()
 
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
+       ////////////// Удаление //////////////
+       const handleDelete = (id) => {
+        try {
+            const requestDelete = async () => {
+                const token = localStorage.getItem("token");
+                // console.log(id);
+                const resultDelete = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        },
+                    },
+                );
+                console.log("-------Delete-------");
+                console.log(resultDelete);
+                
+                const filtredArr = tasks.filter((item) => item.ID !== id);
+                if (resultDelete.status === 200) {
+                    setTasks([...filtredArr]);
+                } else {
+                    alert ("Данные не обновились")
+                }
+            }
+            requestDelete()
+            // const filtredArr = tasks.filter((item) => item.ID !== id);
+            // setTasks([...filtredArr]);         
         } catch (error) {
             console.log(error);
         }
