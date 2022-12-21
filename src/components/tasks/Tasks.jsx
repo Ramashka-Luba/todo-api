@@ -12,7 +12,7 @@ const Tasks = ({ tasks, setTasks }) => {
     useEffect(() => {
         async function fetchData() {
             const token = localStorageGetItem("token");  //получаем токеи для работы с сервером
-            const result = await axios.get("https://first-node-js-app-r.herokuapp.com/api/todos",
+            const result = await axios.get(process.env.REACT_APP_TODOS,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -36,7 +36,7 @@ const Tasks = ({ tasks, setTasks }) => {
         try {
             const requestEdit = async () => {
                 const token = localStorageGetItem("token");
-                const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+                const result = await axios.patch(`${process.env.REACT_APP_TODOS}/${id}`,
                     { title: text },
                     {
                         headers: {
@@ -67,7 +67,7 @@ const Tasks = ({ tasks, setTasks }) => {
             const requestDelete = async () => {
                 const token = localStorageGetItem("token");
                 // console.log(id);
-                const resultDelete = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
+                const resultDelete = await axios.delete(`${process.env.REACT_APP_TODOS}/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -108,7 +108,7 @@ const Tasks = ({ tasks, setTasks }) => {
             const requestComplete = async () => {
                 const token = localStorageGetItem("token");
                 // console.log(token);
-                const resultEnd = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}/isCompleted`,
+                const resultEnd = await axios.patch(`${process.env.REACT_APP_TODOS}/${id}/isCompleted`,
                     {},
                     {
                         headers: {

@@ -23,7 +23,7 @@ const Form = ({tasks, setTasks}) => {
     const handleTasksPost = async () => {
         const token = localStorageGetItem("token");  //получаем токеи для работы с сервером
         try {
-            const res = await axios.post("https://first-node-js-app-r.herokuapp.com/api/todos",
+            const res = await axios.post(process.env.REACT_APP_TODOS,
                 { title: text },
                 {
                     headers: {

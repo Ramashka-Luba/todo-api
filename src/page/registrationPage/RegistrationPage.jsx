@@ -2,7 +2,7 @@ import s from './RegistrationPage.module.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import useInput from '../../validations/Validations';
+import useInput from '../../helpers/Validations';
 
 
 const RegistrationPage = () => {
@@ -39,7 +39,7 @@ const RegistrationPage = () => {
         console.log("-----heandlePost-------");
         console.log(data);
         try {
-            const res = await axios.post("https://first-node-js-app-r.herokuapp.com/api/users/register", data);
+            const res = await axios.post(process.env.REACT_APP_REGISTER, data);
             console.log(res);
             setData({//для того чтоб импут очищался 
                 name: "",

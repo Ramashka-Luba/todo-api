@@ -2,10 +2,11 @@ import s from './LoginPage.module.css';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import useInput from '../../validations/Validations';
+import useInput from '../../helpers/Validations';
 import {localStorageSetItem} from "./../../helpers/IsHelpers"
 
-
+// asd@asd.com
+// Asdfghjk123@
 
 const LoginPage = () => {
 
@@ -38,8 +39,9 @@ const LoginPage = () => {
         // console.log("-----heandlePostLog-------");
         // console.log(dataLog);
         try {
-            const res = await axios.post("https://first-node-js-app-r.herokuapp.com/api/auth/login", dataLog);
+            const res = await axios.post(process.env.REACT_APP_LOGIN, dataLog);
             // console.log(res.data.token);
+            // console.log(process.env.REACT_APP_LOGIN);
 
             if (!res.data.token) { //несли нет token, то сгинерируй ошибку
                 throw new Error(res.data.message) // и опракинь сюда res.data.message
@@ -120,6 +122,5 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-// asd@asd.com
-// Asdfghjk123@
+
 
