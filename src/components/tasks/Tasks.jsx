@@ -2,6 +2,8 @@ import s from './Tasks.module.css';
 import { useEffect } from "react";
 import axios from 'axios';
 import ToDo from '../toDo/ToDo';
+import {localStorageGetItem} from "./../../helpers/IsHelpers"
+
 
 
 const Tasks = ({ tasks, setTasks }) => {
@@ -9,7 +11,7 @@ const Tasks = ({ tasks, setTasks }) => {
     ////////////// Запрос с сервера всех задач //////////////
     useEffect(() => {
         async function fetchData() {
-            const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
+            const token = localStorageGetItem("token");  //получаем токеи для работы с сервером
             const result = await axios.get("https://first-node-js-app-r.herokuapp.com/api/todos",
                 {
                     headers: {
@@ -33,7 +35,7 @@ const Tasks = ({ tasks, setTasks }) => {
 
         try {
             const requestEdit = async () => {
-                const token = localStorage.getItem("token");
+                const token = localStorageGetItem("token");
                 const result = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
                     { title: text },
                     {
@@ -63,7 +65,7 @@ const Tasks = ({ tasks, setTasks }) => {
        const handleDelete = (id) => {
         try {
             const requestDelete = async () => {
-                const token = localStorage.getItem("token");
+                const token = localStorageGetItem("token");
                 // console.log(id);
                 const resultDelete = await axios.delete(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}`,
                     {
@@ -104,7 +106,7 @@ const Tasks = ({ tasks, setTasks }) => {
 
         try {
             const requestComplete = async () => {
-                const token = localStorage.getItem("token");
+                const token = localStorageGetItem("token");
                 // console.log(token);
                 const resultEnd = await axios.patch(`https://first-node-js-app-r.herokuapp.com/api/todos/${id}/isCompleted`,
                     {},

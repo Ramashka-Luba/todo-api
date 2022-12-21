@@ -3,6 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import useInput from '../../validations/Validations';
+import {localStorageSetItem} from "./../../helpers/IsHelpers"
 
 
 
@@ -43,11 +44,11 @@ const LoginPage = () => {
             if (!res.data.token) { //несли нет token, то сгинерируй ошибку
                 throw new Error(res.data.message) // и опракинь сюда res.data.message
             } else { // иначе запиши token и перекинь на todo
-                localStorage.setItem("token", res.data.token)
+                localStorageSetItem("token", res.data.token)
                 navigate('/mainPage'); //вызываем navigate и передаем url, куда хотим чтоб нас перекинуло
             }
 
-            localStorage.setItem("token", res.data.token)
+            localStorageSetItem("token", res.data.token)
             navigate('/mainPage'); //вызываем navigate и передаем url, куда хотим чтоб нас перекинуло
 
         } catch (error) {

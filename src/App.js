@@ -4,12 +4,13 @@ import LoginPage from './page/loginPage/LoginPage';
 import MainPage from './page/mainPage/MainPage.jsx';
 import RegistrationPage from './page/registrationPage/RegistrationPage';
 import PrivateRoute from './components/hoc/PrivateRoute';
+import {localStorageGetItem} from "./helpers/IsHelpers"
 
 
 
 
 const isAut = () => {
-    const ls = localStorage.getItem("token");
+    const ls = localStorageGetItem("token");
     if (ls) {
         return true;
     }else {

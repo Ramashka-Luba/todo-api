@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import s from './Form.module.css'
 import axios from 'axios';
+import {localStorageGetItem} from "./../../helpers/IsHelpers"
 
 
 const Form = ({tasks, setTasks}) => {
@@ -20,7 +21,7 @@ const Form = ({tasks, setTasks}) => {
     }
 
     const handleTasksPost = async () => {
-        const token = localStorage.getItem("token");  //получаем токеи для работы с сервером
+        const token = localStorageGetItem("token");  //получаем токеи для работы с сервером
         try {
             const res = await axios.post("https://first-node-js-app-r.herokuapp.com/api/todos",
                 { title: text },
